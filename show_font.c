@@ -4633,8 +4633,6 @@ int fd_hzk16;
 struct stat hzk_stat;
 unsigned char *hzkmem;
 
-
-
 /* color : 0x00RRGGBB */
 void lcd_put_pixel(int x, int y, unsigned int color)
 {
@@ -4678,18 +4676,13 @@ void lcd_put_ascii(int x, int y, unsigned char c)
 	int i, b;
 	unsigned char byte;
 
-	for (i = 0; i < 16; i++)
-	{
+	for (i = 0; i < 16; i++) {
 		byte = dots[i];
-		for (b = 7; b >= 0; b--)
-		{
-			if (byte & (1<<b))
-			{
+		for (b = 7; b >= 0; b--) {
+			if (byte & (1<<b)) {
 				/* show */
 				lcd_put_pixel(x+7-b, y+i, 0xffffff); /* ?? */
-			}
-			else
-			{
+			} else {
 				/* hide */
 				lcd_put_pixel(x+7-b, y+i, 0); /* ?? */
 			}
@@ -4705,26 +4698,20 @@ void lcd_put_chinese(int x, int y, unsigned char *str)
 	unsigned char byte;
 
 	int i, j, b;
-	for (i = 0; i < 16; i++)
-		for (j = 0; j < 2; j++)
-		{
+	for (i = 0; i < 16; i++) {
+		for (j = 0; j < 2; j++) {
 			byte = dots[i*2 + j];
-			for (b = 7; b >=0; b--)
-			{
-				if (byte & (1<<b))
-				{
+			for (b = 7; b >=0; b--) {
+				if (byte & (1<<b)) {
 					/* show */
 					lcd_put_pixel(x+j*8+7-b, y+i, 0xffffff); /* ?? */
-				}
-				else
-				{
+				} else {
 					/* hide */
 					lcd_put_pixel(x+j*8+7-b, y+i, 0); /* ?? */
 				}
-				
 			}
 		}
-	
+	}	
 }
 
 int main(int argc, char **argv)
